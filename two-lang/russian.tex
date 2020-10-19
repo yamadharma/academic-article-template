@@ -1,0 +1,29 @@
+\input preamble
+
+\input define
+
+\usepackage{comment}
+
+\begin{document}
+
+\selectlanguage{russian}
+\excludecomment{English}%
+\excludecomment{Vestnik}%
+
+\includecomment{Russian}%
+\includecomment{noVestnik}%
+
+\excludecomment{@TARGET@}%
+\includecomment{no@TARGET@}%
+
+\input{title}%
+
+\input{text}%
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% coding: utf-8-unix
+%%% End:

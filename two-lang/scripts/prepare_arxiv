@@ -1,0 +1,118 @@
+#!/bin/bash
+# -*- mode: sh -*-
+
+MAINLANG=english
+ALTLANG=russian
+
+source scripts/include/header
+source scripts/include/function
+
+
+# {{{ Make preamble
+
+for i in ${MAINLANG} ${ALTLANG}
+do
+    touch ${out_dir}/${i}.tex
+    cat support/${PROJECT_NAME}/preamble/class/*.tex >> ${out_dir}/${i}.tex
+    cat support/${PROJECT_NAME}/preamble/lang/${i}.tex >> ${out_dir}/${i}.tex
+    cat support/${PROJECT_NAME}/preamble/pkg/*.tex >> ${out_dir}/${i}.tex
+    
+    cp ${i}.bbl ${out_dir}/
+
+    cat ${out_dir}/${i}.tex >> ${out_dir}/text/${i}.tex
+done
+
+# }}}
+
+
+# {{{ title
+
+shift
+for file in "$@"
+do
+    # 
+    if [[ $file == +(title/*head*) ]]
+    then
+
+	clear_all_lang
+
+	cat ./${out_dir}/${MAINLANG}_clean.tex >> ./${out_dir}/text/${MAINLANG}.tex
+	cat ./${out_dir}/${ALTLANG}_clean.tex >> ./${out_dir}/text/${ALTLANG}.tex
+	
+	rm ./${out_dir}/*.tex
+	
+	shift
+	continue
+
+    fi
+
+    if [[ $file == +(title/*) ]]
+    then
+
+	clear_all_lang
+	
+	#clear_maintitle
+	#clear_alttitle
+	
+	# 
+	cat ./${out_dir}/${MAINLANG}_clean.tex >> ./${out_dir}/text/${MAINLANG}.tex
+	cat ./${out_dir}/${ALTLANG}_clean.tex >> ./${out_dir}/text/${ALTLANG}.tex
+	
+	rm ./${out_dir}/*.tex
+	
+	shift
+    fi
+done
+
+# }}}
+
+# {{{ body
+
+for file in "$@"
+do
+
+    clear_all_lang
+    
+    # 
+    cat ./${out_dir}/${MAINLANG}_clean.tex >> ./${out_dir}/text/${MAINLANG}.tex
+    cat ./${out_dir}/${ALTLANG}_clean.tex >> ./${out_dir}/text/${ALTLANG}.tex
+    
+    rm ./${out_dir}/*.tex
+    
+done
+
+clear_comment "${out_dir}/text/${MAINLANG}.tex"
+clear_comment "${out_dir}/text/${ALTLANG}.tex"
+
+# }}}
+
+# {{{ Make postamble
+
+cat support/${PROJECT_NAME}/preamble/end/* >> ${out_dir}/text/${MAINLANG}.tex
+cat support/${PROJECT_NAME}/preamble/end/* >> ${out_dir}/text/${ALTLANG}.tex
+
+# }}}
+
+clear_garbage "${out_dir}/text/${MAINLANG}.tex"
+clear_garbage "${out_dir}/text/${ALTLANG}.tex"
+
+cp -RL image ${out_dir}/
+#find ${out_dir}/image -name "*.pdf" -exec pdftops -r 600 -eps "{}" \;
+
+find ${out_dir} -name "auto" -exec rm -rf '{}' \;
+
+# {{{ Copy support files
+
+if [[ -d support/${PROJECT_NAME}/files ]]
+then
+    cp support/"${PROJECT_NAME}"/files/* "${out_dir}"/text/
+fi
+
+# }}}
+
+mv "${out_dir}"/text/* "${out_dir}"/
+rmdir "${out_dir}"/text
+
+cd "${out_dir}"
+tar czvf ../${PROJECT_NAME}.tar.gz *
+cd "${CURDIR}"

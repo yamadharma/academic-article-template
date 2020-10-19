@@ -1,0 +1,32 @@
+#!/bin/bash
+
+[[ -L default.tex ]] || ln -s russian.tex default.tex
+
+if [[ $(cat NAME) != "" ]]
+then
+    PROJECT=$(cat NAME)
+    mkdir -p image/${PROJECT}/{en,ru}
+    # Replace template @PROJECT@ to project name
+    [[ -d bib/@PROJECT@ ]] && mv bib/@PROJECT@ bib/${PROJECT}
+    for i in title/* text/*
+    do
+	[[ -L "$i" ]] || sed -i -e "s:@PROJECT@:${PROJECT}:g" "$i"
+    done
+else
+    echo "Add name of project into NAME file"
+fi
+
+if [[ $(cat TARGET) != "" ]]
+then
+    TARGET=$(cat TARGET)
+    # Replace template @TARGE@ to target name
+    for i in *.tex title/* text/*
+    do
+	[[ -L "$i" ]] || sed -i -e "s:@TARGET@:${TARGET^}:g" "$i"
+    done
+    # Run Makefile in support directory
+    [[ -d support/${TARGET} ]] && (cd support/${TARGET}; make)
+else
+    echo "Add target name into TARGET file"
+fi
+

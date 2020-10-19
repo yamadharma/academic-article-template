@@ -1,0 +1,55 @@
+NAME = `cat NAME`
+
+pdf:	## Make combined english+russian pdf file
+	pdftk english.pdf russian.pdf cat output $(NAME).pdf
+
+prepare:	## Prepare source tree for compilation
+	@./scripts/src_prepare
+
+### Template targets:
+
+vestnik:
+	scripts/prepare_vestnik $(NAME) title/*.tex text/*.tex
+
+casc:
+	scripts/prepare_casc $(NAME) text/*.tex
+
+mmcp:
+	scripts/prepare_mmcp $(NAME) text/*.tex
+
+mmg:
+	scripts/prepare_mmg $(NAME) text/*.tex
+
+ecms:
+	scripts/prepare_ecms $(NAME) text/*.tex
+
+aisc:
+	scripts/prepare_aisc $(NAME) text/*.tex
+
+jpcs:
+	scripts/prepare_jpcs $(NAME) text/*.tex
+
+lncs:	### Use template: Lecture Notes in Computer Science (LNCS)
+	scripts/prepare lncs $(NAME) title/*.tex text/*.tex
+
+spie:	### Use template: SPIE
+	scripts/prepare spie $(NAME) title/*.tex text/*.tex
+
+iopconf:	### Use template: IOPconf
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
+svproc:		### Use template: SVProc
+	scripts/prepare_svproc $(NAME) title/*.tex text/*.tex
+
+ieeetran:	### Use template: IEEEtran
+	scripts/prepare_ieeetran $(NAME) title/*.tex text/*.tex
+
+webofc:		### Use template: WebOFC
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
+programm:	### Use template: Программирование
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
+arxiv:		### Use template: arXiv
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+

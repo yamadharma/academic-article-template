@@ -1,0 +1,51 @@
+# -*- mode:sh -*-
+
+scriptname=`basename $0`
+
+if [[ ${scriptname} == prepare ]]
+then
+    PROJECT_NAME=$1
+    NAME=$2
+    shift
+    shift
+    file_list=$@
+else
+    # Старый вариант именования скриптов
+    # Убираем префикс `prepare_`
+    PROJECT_NAME=${scriptname/prepare_/}
+    NAME=$1
+    shift
+    file_list=$@
+fi
+
+## Variables
+OUT_DIR="out/${PROJECT_NAME}"
+OUT_NAME="${PROJECT_NAME}_${NAME}"
+
+## Создаём каталоги
+# rm -rf ${out_dir}
+# mkdir -p ${out_dir}/{text,bib}
+## Копируем библиографию
+# cp -r bib/* ${out_dir}/bib/
+
+comment_tag_list=(
+    arxiv
+    vestnik
+    spie
+    ecms
+    aisc
+    svproc
+    lncs
+    programm
+    maik
+    iopconf
+    ieeetran
+    webofc
+    @TARGET@
+)
+
+# Собственная метка комментария - имя с заглавной буквы
+comment_tag_self=${PROJECT_NAME}
+# Дополнительные метки
+comment_tag_self_list=()
+

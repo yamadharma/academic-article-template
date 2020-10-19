@@ -1,0 +1,79 @@
+#!/bin/bash
+# -*- mode: sh -*-
+
+MAINLANG=russian
+ALTLANG=english
+
+source scripts/include/header
+source scripts/include/function
+
+#{{{ title
+
+shift
+for file in "$@"
+do
+    # Из head берём только основной язык
+    if [[ $file == +(title/*head*) ]]
+    then
+
+	clear_all_lang
+
+	cat ./${out_dir}/${MAINLANG}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+	# cat ./${out_dir}/${ALTLANG}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+	
+	rm ./${out_dir}/*.tex
+	
+	shift
+	continue
+
+    fi
+
+    if [[ $file == +(title/*) ]]
+    then
+
+	clear_all_lang
+	
+	clear_maintitle
+	clear_alttitle
+	
+	# Для оформления титула нужны оба языка
+	cat ./${out_dir}/${MAINLANG}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+	cat ./${out_dir}/${ALTLANG}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+	
+	rm ./${out_dir}/*.tex
+	
+	shift
+    fi
+done
+
+#}}}
+
+#{{{ body
+
+for file in "$@"
+do
+
+    clear_all_lang
+    
+    # Нужен только один язык
+    cat ./${out_dir}/${MAINLANG}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+    # cat ./${out_dir}/${ALTLANG}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+    
+    rm ./${out_dir}/*.tex
+    
+done
+
+clear_comment "${out_dir}/text/${out_name}.tex"
+
+#}}}
+
+clear_garbage
+
+# Вестник требует кодировки windows cp1251
+convert_to_cp1251
+
+# Copy support files
+if [[ -d support/${PROJECT_NAME}/files ]]
+then
+    cp support/"${PROJECT_NAME}"/files/* "${out_dir}"/text/
+fi

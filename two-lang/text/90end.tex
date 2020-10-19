@@ -1,0 +1,54 @@
+\begin{no@TARGET@}
+\begin{noVestnik}
+\begin{Russian}
+  \ifthenelse{\boolean{xetex} \OR \boolean{luatex}}
+  {\bibliographystyle{ugost2008l}}
+  {\bibliographystyle{gost2008l}}
+\end{Russian}
+\begin{English}
+% \bibliographystyle{abbrvnat}
+% \bibliographystyle{naturemag}
+% \bibliographystyle{apsrev4-1}
+% \bibliographystyle{aipnum4-1}
+% \bibliographystyle{apsrmp4-1}
+% \bibliographystyle{gost2008l}
+% \bibliographystyle{plainnat}
+% \bibliographystyle{abbrvnat}
+% \bibliographystyle{unsrtnat}
+ \bibliographystyle{elsarticle-num}
+\end{English}
+
+% \nocite{*}
+\bibliography{bib/@PROJECT@/cite}
+\end{noVestnik}
+
+
+\begin{Vestnik}
+  \putbib[bib/@PROJECT@/cite_ru]
+  
+  \makealttitle
+  
+  \putaltbib[bib/@PROJECT@/cite_en]
+
+\begin{English}
+} % END \selectlanguage
+\end{English}
+
+\end{Vestnik}
+
+\end{no@TARGET@}
+
+% \begin{Lncs}
+% %  \section*{References}
+%   \bibliography{lncs_one-step-diagram}
+% \end{Lncs}
+
+\begin{@TARGET@}
+  \bibliography{@PROJECT@}
+\end{@TARGET@}
+
+%%% Local Variables:
+%%% mode: latex
+%%% coding: utf-8-unix
+%%% End:
+
