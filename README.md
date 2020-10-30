@@ -2,7 +2,7 @@
 
 ## Скачать репозиторий
 
-git clone --recursive https://github.com/yamadharma/article-template.git
+git clone --recursive https://github.com/yamadharma/academic-article-template.git
 
 ## Каталоги
 
