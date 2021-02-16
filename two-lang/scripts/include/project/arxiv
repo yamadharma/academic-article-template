@@ -20,6 +20,6 @@ do
 done
 
 cd "${OUT_DIR}"
-tar czvf ../${PROJECT_NAME}.tar.gz *
+7z -l a ../${PROJECT_NAME}.zip *
 
 }
