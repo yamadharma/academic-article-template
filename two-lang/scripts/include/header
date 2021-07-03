@@ -41,6 +41,8 @@ comment_tag_list=(
     iopconf
     ieeetran
     webofc
+    svjour
+    elsarticle
     @TARGET@
 )
 
