@@ -53,6 +53,9 @@ programm:	### Use template: Программирование
 elsarticle:	### Use template: Elsiever article
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
+sn-jnl:	### Use template: Springer Nature article
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
 arxiv:		### Use template: arXiv
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
