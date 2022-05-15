@@ -59,3 +59,6 @@ sn-jnl:	### Use template: Springer Nature article
 arxiv:		### Use template: arXiv
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
+vychmat:		### Use template: Журнал вычислительной математики и математической физики
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
