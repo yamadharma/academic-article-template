@@ -20,7 +20,11 @@ fi
 
 ## Variables
 OUT_DIR="out/${PROJECT_NAME}"
-OUT_NAME="${PROJECT_NAME}_${NAME}"
+# OUT_NAME="${PROJECT_NAME}_${NAME}"
+OUT_NAME="${NAME}"
+
+## Clean
+rm -rf out
 
 ## Создаём каталоги
 # rm -rf ${out_dir}
@@ -41,6 +45,9 @@ comment_tag_list=(
     iopconf
     ieeetran
     webofc
+    svjour
+    elsarticle
+    sn-jnl
     @TARGET@
 )
 

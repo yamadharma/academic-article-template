@@ -50,6 +50,15 @@ webofc:		### Use template: WebOFC
 programm:	### Use template: Программирование
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
+elsarticle:	### Use template: Elsiever article
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
+sn-jnl:	### Use template: Springer Nature article
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
 arxiv:		### Use template: arXiv
+	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
+
+vychmat:		### Use template: Журнал вычислительной математики и математической физики
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
