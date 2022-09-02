@@ -1,0 +1,11 @@
+%% Убрали название и отступы
+\renewenvironment{abstract}{%
+  \small}{}
+
+%% Заголовки
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\bfseries\center}
+\titleformat*{\subsection}{\large\itshape\center}
+
+%% Сноски со скобкой
+\renewcommand*{\thefootnote}{\arabic{footnote})}

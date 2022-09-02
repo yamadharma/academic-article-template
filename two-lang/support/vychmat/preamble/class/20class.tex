@@ -1,10 +1,51 @@
-\documentclass[%
-floatfix,
-showkeys,
-% twocolumn, %
-nofootinbib, %
-superscriptaddress, %
-]{revtex4-2}
+% 16/03/2018 Первая версия, разосланная участникам 
+%            семинара Боголюбова. 
+% 20/03/2018 Правки Севастьянова.
+% 25/03/2018 Правки Боголюбова.
+% 3/10/2018 Отослана Л.В. Раевской.
+% ЖВМ и МФ. №2, 2019.
+\documentclass[a4paper,12pt]{article}
+\usepackage{misccorr}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%Параметры страницы 
+\textheight 24 true cm
+\textwidth 16.5 true cm
+\hoffset -10 true mm
+\voffset -25 true mm
+\unitlength=1mm
+\renewcommand{\baselinestretch}{1.25}
+\sloppy
+\frenchspacing
+\usepackage{indentfirst}
+
+%Окружения
+\theoremstyle{remark}
+\newtheorem*{Anm}{\rm \bf Замечание}
+\newtheorem*{acknowledgements}{\rm \bf Благодарности}
+\theoremstyle{definition}
+\newtheorem{Def}{\rm \bf Определение}
+\newtheorem{Ax}{\rm \bf Требование}
+\newtheorem{Theorem}{\rm \bf Теорема}
+\newtheorem{Folderung}{\rm \bf Следствие}
+\newtheorem{Lemma}{\rm \bf Лемма}
+\newtheorem{Ex}{\rm \bf Пример}
+\newtheorem{Aufgabe}{\rm \bf Задача}
+\providecommand{\keywords}[1]{\textbf{Ключевые слова:~} #1.}
+
+%Мат. символы:
+\def\bb{\mathbb}
+\def\phi{\varphi}
+\def\Phi{\varPhi}
+\def\epsilon{\varepsilon}
+\def\theta{\vartheta}
+\def\rot{\operatorname{rot}}
+\def\div{\operatorname{div}}
+\def\HD{\overset{\mbox{\tiny 0}}{W}{}^1_2} 
+\def\HN{{W}^1_2} 
 
 %%% Local Variables:
 %%% mode: latex
