@@ -1,10 +1,22 @@
-NAME = `cat NAME`
+# -*- mode: makefile -*-
 
-pdf:	## Make combined english+russian pdf file
-	pdftk english.pdf russian.pdf cat output $(NAME).pdf
+NAME = `cat NAME`
 
 prepare:	## Prepare source tree for compilation
 	@./scripts/src_prepare
+
+rename:	## Make combined english+russian pdf file
+	-[[ -f default.pdf ]] && mv default.pdf $(NAME).pdf
+	-[ -f russian.pdf -a -f english.pdf ] && pdftk english.pdf russian.pdf cat output $(NAME).pdf
+
+cite:	## Generate '.bib' file
+	-[[ -f default.aux ]] && jabref -n -a default,cite.bib ~/work/bib/bib/main.bib
+	-[[ -f russian.aux ]] && jabref -n -a russian,cite.russian.bib ~/work/bib/bib/main.bib ; cat cite.russian.bib >> cite.bib
+	-[[ -f english.aux ]] && jabref -n -a english,cite.english.bib ~/work/bib/bib/main.bib ; cat cite.english.bib >> cite.bib
+	# -[[ -f default.aux ]] && bibexport -r ~/work/bib/bib/main.bib -o cite.default.bib default ; cat cite.default.bib >> cite.bib
+	# -[[ -f russian.aux ]] && bibexport -r ~/work/bib/bib/main.bib -o cite.russian.bib russian ; cat cite.russian.bib >> cite.bib
+	# -[[ -f english.aux ]] && bibexport -r ~/work/bib/bib/main.bib -o cite.english.bib english ; cat cite.english.bib >> cite.bib
+	-[[ -f cite.bib ]] && bibtex-tidy --no-escape --duplicates key --merge cite.bib
 
 ### Template targets:
 
