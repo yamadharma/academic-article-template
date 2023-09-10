@@ -1,3 +1,22 @@
+## [1.0.2](https://github.com/yamadharma/academic-article-template/compare/v1.0.1...v1.0.2) (2023-09-10)
+
+
+### Bug Fixes
+
+* **author:** change author's affiliation ([baee95c](https://github.com/yamadharma/academic-article-template/commit/baee95cf6b09de234b7e7d9e0703c050d372fd49))
+* **authors:** aupdate authors description ([f614423](https://github.com/yamadharma/academic-article-template/commit/f6144234d66e92a60a43377caddad63bb53d5aca))
+* **authors:** fix affiliation ([f78dc12](https://github.com/yamadharma/academic-article-template/commit/f78dc12afe3d8be53823cb52fc44915bd9f7a377))
+* **authors:** fix affiliation for Velieva ([ed1edcc](https://github.com/yamadharma/academic-article-template/commit/ed1edcced2286aadebc43791daa0943d750343bb))
+* **makefile:** add cite.bib gneration from .aux files ([dd5be07](https://github.com/yamadharma/academic-article-template/commit/dd5be07d6c2965754cfbb135a6732fb3e5410e57))
+
+
+### Features
+
+* **support:** update style file for vychmat ([5306f3e](https://github.com/yamadharma/academic-article-template/commit/5306f3e57e55ae65bfbcdb462be4b66aeb437b2f))
+* **title:** add author ([12092d5](https://github.com/yamadharma/academic-article-template/commit/12092d5a7abc852100db8d31fc946dca5c314021))
+
+
+
 ## 1.0.1 (2022-05-15)
 
 
