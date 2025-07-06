@@ -1,3 +1,13 @@
+## [1.0.4](https://github.com/yamadharma/academic-article-template/compare/v1.0.3...v1.0.4) (2025-07-06)
+
+
+### Bug Fixes
+
+* **latex:** fix loading class ([b071507](https://github.com/yamadharma/academic-article-template/commit/b07150716cb181b84e78770a6643d071502440b5))
+* **script:** fix src_prepare script ([6f5268e](https://github.com/yamadharma/academic-article-template/commit/6f5268ee8c07ff9e01811703a574dcc2d04b6203))
+
+
+
 ## [1.0.3](https://github.com/yamadharma/academic-article-template/compare/v1.0.2...v1.0.3) (2025-03-17)
 
 
