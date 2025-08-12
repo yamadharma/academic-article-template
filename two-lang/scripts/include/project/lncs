@@ -1,2 +1,13 @@
 # -*- mode:sh -*-
 
+project_hack() {
+
+### Acknowledgments hacks
+
+sed -i -e 's:\\begin{acknowledgments}:\\begin{credits}\n\\subsubsection{\\ackname}\n:g' \
+    ${out_dir}/text/${out_name}.tex
+
+sed -i -e 's:\\end{acknowledgments}:\\end{credits}:g' \
+     ${out_dir}/text/${out_name}.tex
+
+}

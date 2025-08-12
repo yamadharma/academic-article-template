@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if [[ $(cat PROJECT) != "" ]]
+[[ -L default.tex ]] || ln -s russian.tex default.tex
+
+if [[ $(cat NAME) != "" ]]
 then
-    PROJECT=$(cat PROJECT)
+    PROJECT=$(cat NAME)
     mkdir -p image/${PROJECT}/{en,ru}
 
     # Replace template @PROJECT@ to project name
@@ -10,7 +12,7 @@ then
 
     for i in title/* text/* russian.tex english.tex
     do
-	[[ -L "$i" ]] || sed -i -e "s:@PROJECT@:${PROJECT}:g" "$i"
+	    [[ -L "$i" ]] || sed -i -e "s:@PROJECT@:${PROJECT}:g" "$i"
     done
 
 else
@@ -24,7 +26,7 @@ then
     # Replace template @TARGE@ to target name
     for i in *.tex title/* text/*
     do
-	[[ -L "$i" ]] || sed -i -e "s:@TARGET@:${TARGET^}:g" "$i"
+	    [[ -L "$i" ]] || sed -i -e "s:@TARGET@:${TARGET^}:g" "$i"
     done
 
     # Run Makefile in support directory

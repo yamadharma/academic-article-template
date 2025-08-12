@@ -45,17 +45,19 @@ else
     TWOFILES=no
 fi
 
-# For specific project
+## For specific project
+
 if [[ -f "scripts/include/project/${PROJECT_NAME}" ]]
 then
     source "scripts/include/project/${PROJECT_NAME}"
 fi
 
 ## Variables
+
 out_name=${OUT_NAME}
 out_dir=${OUT_DIR}
 
-# {{{ Make preamble
+## Make preamble
 
 for lang in ${LANGLIST}
 do
@@ -77,9 +79,7 @@ do
     cp -r bib/* ${out_dir}/bib/
 done
 
-# }}}
-
-# {{{ title
+## title
 
 for file in "$@"
 do
@@ -90,13 +90,13 @@ do
 	for lang in ${LANGLIST}
 	do
 	    [[ $TWOFILES == yes ]] && out_dir="${OUT_DIR}/${lang}"
-	
+
 	    clear_all_lang
-	    
+
 	    cat ./${out_dir}/${lang}_clean.tex >> ./${out_dir}/${file}
 	    rm ./${out_dir}/*.tex
 	done
-	
+
 	shift
 	continue
     fi
@@ -109,7 +109,6 @@ do
 	do
 	    [[ $TWOFILES == yes ]] && out_dir="${OUT_DIR}/${lang}"
 
-	
 	    clear_all_lang
 
 	    cat ./${out_dir}/${lang}_clean.tex >> ./${out_dir}/${file%%_*}.tex
@@ -117,7 +116,7 @@ do
 	    rm ./${out_dir}/*.tex
 
 	done
-	
+
 	shift
 	continue
     fi
@@ -125,24 +124,23 @@ do
     if [[ $file == +(title/*) ]]
     then
 
+	    for lang in ${LANGLIST}
+	    do
+	        [[ $TWOFILES == yes ]] && out_dir="${OUT_DIR}/${lang}"
 
-	for lang in ${LANGLIST}
-	do
-	    [[ $TWOFILES == yes ]] && out_dir="${OUT_DIR}/${lang}"
+	        clear_all_lang
 
-	    clear_all_lang
-	    
-	    # clear_maintitle
-	    # clear_alttitle
+	        # clear_maintitle
+	        # clear_alttitle
 
-	    # Только основной язык
-	    cat ./${out_dir}/${lang}_clean.tex >> ./${out_dir}/${file}
+	        # Только основной язык
+	        cat ./${out_dir}/${lang}_clean.tex >> ./${out_dir}/${file}
 
-	    rm ./${out_dir}/*.tex
+	        rm ./${out_dir}/*.tex
 
-	done
-	
-	shift
+	    done
+
+	    shift
     fi
 done
 
@@ -156,23 +154,21 @@ do
 
 done
 
-# }}}
-
-# {{{ body
+## body
 
 for file in "$@"
 do
 
     for lang in ${LANGLIST}
     do
-	[[ $TWOFILES == yes ]] && out_dir="${OUT_DIR}/${lang}"
-    
-	clear_all_lang
-		
-	# Нужен только один язык
-	cat ./${out_dir}/${lang}_clean.tex >> ./${out_dir}/text/${out_name}.tex
-	
-	rm ./${out_dir}/*.tex
+	    [[ $TWOFILES == yes ]] && out_dir="${OUT_DIR}/${lang}"
+
+	    clear_all_lang
+
+	    # Нужен только один язык
+	    cat ./${out_dir}/${lang}_clean.tex >> ./${out_dir}/text/${out_name}.tex
+
+	    rm ./${out_dir}/*.tex
 
     done
 done
@@ -183,10 +179,8 @@ do
 
     clear_comment "${out_dir}/text/${out_name}.tex"
 done
-    
-# }}}
 
-# {{{ Make postamble
+## Make postamble
 
 for lang in ${LANGLIST}
 do
@@ -197,15 +191,11 @@ do
     clear_garbage
 done
 
-# }}}
-
-# {{{ Copy images
+## Copy images
 
 cp -R image "${out_dir}"
 
-# }}}
-
-# {{{ Copy support files
+## Copy support files
 
 if [[ -d "support/${PROJECT_NAME}/files" ]]
 then
@@ -215,11 +205,6 @@ then
     fi
 fi
 
-# }}}
-
-# {{{ Project specific hack
+## Project specific hack
 
 project_hack
-
-# }}}
-

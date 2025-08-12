@@ -59,7 +59,7 @@ ieeetran:	### Use template: IEEEtran
 webofc:		### Use template: WebOFC
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
-programm:	### Use template: Программирование
+pcm:	### Use template: Программирование
 	scripts/prepare $@ $(NAME) title/*.tex text/*.tex
 
 elsarticle:	### Use template: Elsiever article

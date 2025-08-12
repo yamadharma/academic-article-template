@@ -19,7 +19,7 @@ clear_lang() {
     local dellang=$2
     Restlang=${restlang^}
     Dellang=${dellang^}
-    
+
     sed -e '/\\begin{'$Restlang'}/d' \
     	-e '/\\end{'$Restlang'}/d'\
 	-e '/\\begin{'$Dellang'}/,/\\end{'$Dellang'}/d' \
@@ -100,9 +100,9 @@ clear_garbage() {
 convert_to_cp1251() {
     find ${out_dir} -name "*.bib" -exec recode -f UTF-8..WINDOWS1251 "{}" \;
     find ${out_dir} -name "*.tex" -exec recode -f UTF-8..WINDOWS1251 "{}" \;
-    
+
     echo -e '%%% Local Variables:\n%%% mode: latex\n%%% coding: cp1251-unix\n%%% End:\n' >> ${out_dir}/text/${out_name}.tex
-    
+
     for i in $(find ${out_dir} -name "*.bib")
     do
 	sed -i -e '/^%/D' ${i}
