@@ -7,7 +7,8 @@ prepare:	## Prepare source tree for compilation
 
 rename:	## Make combined english+russian pdf file
 	-[[ -f default.pdf ]] && mv default.pdf $(NAME).pdf
-	-[ -f russian.pdf -a -f english.pdf ] && pdftk english.pdf russian.pdf cat output $(NAME).pdf
+	-[[ -f russian.pdf && ! -f english.pdf ]] && mv russian.pdf $(NAME).pdf
+	-[[ -f russian.pdf && -f english.pdf ]] && pdftk english.pdf russian.pdf cat output $(NAME).pdf
 
 cite:	## Generate '.bib' file
 	-[[ -f default.aux ]] && jabref -n -a default,cite.bib ~/work/bib/bib/main.bib

@@ -16,6 +16,7 @@ clean:
 
 cleanall:
 		latexmk -C
+		rm *.cut
 		rm -rvf _minted
 		rm -rvf split-paper.d default.htmld out
 
